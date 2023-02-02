@@ -8,18 +8,16 @@ include_once '../../models/Post.php';
 $database = new DataBase();
 $db = $database->connect();
 
-$user = new Post($db);
+$client = new Client($db);
 
-$user->id = isset($_GET['id']) ? $_GET['id'] : die();
+$client->id = isset($_GET['id']) ? $_GET['id'] : die();
 
-$user->read_single();
+$client->read_single();
 
-$user_arr = array(
-   'id'=>$user->id,
-   'email'=>$user->email,
-   'pass'=>$user->pass
+$client_arr = array(
+   'id'=>$client->id,
+   'email'=>$client->email,
+   'pass'=>$client->pass
 );
-print_r(json_encode($user_arr))
-
-
+print_r(json_encode($client_arr))
 ?>
