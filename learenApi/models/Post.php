@@ -28,14 +28,16 @@ public function read_single(){
     $this->pass = $row['pass'];
 }
 // add user
-public function creatuser(){
+public function creatuser($email,$pass){
+    // echo $this->email;
+    // echo $this->pass;
    //add user
-    $query = 'INSERT INTO' . $this->table . 'SET (email = :email, pass = :pass)';
+$query = 'INSERT INTO `admin`(`email`, `pass`) VALUES (:email,:pass)';
 
-    $stmt = $this->conn->prepare($query);
-
-    $this->email;
-
+$stmt = $this->conn->prepare($query);
+$stmt->bindParam(':email',$this->email);
+$stmt->bindParam(':pass',$this->pass);
+$stmt->execute();
 }
 }
 ?>
